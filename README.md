@@ -1,5 +1,11 @@
 # Localization
 
+[![CI](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml/badge.svg)](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml)
+[![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](Package.swift)
+[![Version](https://img.shields.io/badge/version-V1-blue.svg)](#v1-locales)
+[![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](Package.swift)
+[![iOS](https://img.shields.io/badge/iOS-26%2B-lightgrey.svg)](Package.swift)
+
 Shared iOS 26 localization policy for app projects.
 
 ## Why this exists
