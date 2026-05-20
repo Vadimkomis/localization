@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml/badge.svg)](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml)
 [![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](Package.swift)
-[![Version](https://img.shields.io/badge/version-V1-blue.svg)](#v1-locales)
+[![Locales](https://img.shields.io/badge/locales-V1-blue.svg)](#supported-locales)
 [![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](Package.swift)
 [![iOS](https://img.shields.io/badge/iOS-26%2B-lightgrey.svg)](Package.swift)
 
@@ -16,7 +16,7 @@ Use this package as the single source of truth for the languages supported acros
 
 This package does not own app copy. Each app should still keep its translated strings in native Apple localization resources such as `.xcstrings`, `.strings`, or `.stringsdict`.
 
-## V1 locales
+## Supported locales
 
 - Source locale: `en-US`
 - Target locales: `es`, `pt-BR`, `ja`, `de`, `fr`, `he`
@@ -53,7 +53,7 @@ let targetLocales = LocalizationPolicy.targetLocales
 let supportedIdentifiers = LocalizationPolicy.supportedLocaleIdentifiers
 ```
 
-The V1 supported identifiers are stable and ordered with the source locale first:
+Supported identifiers are stable and ordered with the source locale first:
 
 ```swift
 [
