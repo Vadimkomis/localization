@@ -98,14 +98,6 @@ func appIncludesAllRequiredLocales() {
 
 When Hebrew (`he`) is enabled, apps should also test right-to-left layout behavior for critical screens and controls.
 
-## Social preview + README banner
-
-This repo includes:
-
-- `assets/banner.png` - used at the top of this README and suitable for GitHub Settings -> Social preview
-
-GitHub's social preview guidance: keep the image under 1 MB; 1280x640 works best.
-
 ## Ownership boundary
 
 - `Localization` owns shared locale policy and validation helpers.
