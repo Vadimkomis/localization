@@ -17,4 +17,23 @@ public enum LocalizationPolicy {
     public static var supportedLocaleIdentifiers: [String] {
         supportedLocales.map(\.identifier)
     }
+
+    public static let supportedCountries: [SupportedCountry] = [
+        .austria,
+        .belgium,
+        .denmark,
+        .finland,
+        .france,
+        .germany,
+        .italy,
+        .netherlands,
+        .norway,
+        .spain,
+        .sweden,
+        .switzerland
+    ]
+
+    public static var supportedCountryCodes: [String] {
+        supportedCountries.map(\.code)
+    }
 }

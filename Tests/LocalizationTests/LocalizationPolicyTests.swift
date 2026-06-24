@@ -33,6 +33,60 @@ struct LocalizationPolicyTests {
         ])
     }
 
+    @Test("supported countries match European launch set")
+    func supportedCountries() {
+        #expect(LocalizationPolicy.supportedCountries == [
+            .austria,
+            .belgium,
+            .denmark,
+            .finland,
+            .france,
+            .germany,
+            .italy,
+            .netherlands,
+            .norway,
+            .spain,
+            .sweden,
+            .switzerland
+        ])
+    }
+
+    @Test("supported country codes are stable")
+    func supportedCountryCodes() {
+        #expect(LocalizationPolicy.supportedCountryCodes == [
+            "AT",
+            "BE",
+            "DK",
+            "FI",
+            "FR",
+            "DE",
+            "IT",
+            "NL",
+            "NO",
+            "ES",
+            "SE",
+            "CH"
+        ])
+    }
+
+    @Test("supported country names are stable")
+    func supportedCountryNames() {
+        #expect(LocalizationPolicy.supportedCountries.map(\.name) == [
+            "Austria",
+            "Belgium",
+            "Denmark",
+            "Finland",
+            "France",
+            "Germany",
+            "Italy",
+            "Netherlands",
+            "Norway",
+            "Spain",
+            "Sweden",
+            "Switzerland"
+        ])
+    }
+
     @Test("all supported locales expose stable identifiers")
     func supportedLocaleIdentifiers() {
         #expect(SupportedLocale.allCases.map(\.identifier) == [
@@ -52,11 +106,24 @@ struct LocalizationPolicyTests {
         #expect(SupportedLocale.enUS.locale.identifier == "en-US")
     }
 
+    @Test("all supported countries expose stable codes")
+    func allSupportedCountryCodes() {
+        #expect(SupportedCountry.allCases.map(\.code) == LocalizationPolicy.supportedCountryCodes)
+    }
+
     @Test("supported locale codable round trip")
     func codableRoundTrip() throws {
         let encoded = try JSONEncoder().encode(SupportedLocale.he)
         let decoded = try JSONDecoder().decode(SupportedLocale.self, from: encoded)
 
         #expect(decoded == .he)
+    }
+
+    @Test("supported country codable round trip")
+    func countryCodableRoundTrip() throws {
+        let encoded = try JSONEncoder().encode(SupportedCountry.switzerland)
+        let decoded = try JSONDecoder().decode(SupportedCountry.self, from: encoded)
+
+        #expect(decoded == .switzerland)
     }
 }
