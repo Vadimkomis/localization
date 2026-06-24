@@ -47,12 +47,12 @@ Import the package wherever app code or tests need the supported locale policy:
 import Localization
 ```
 
-Read the source locale, target locales, supported countries, or stable identifiers:
+Read the source locale, target locales, supported countries, or stable identifiers. `SupportedLocale` is the centralized language list; `LocalizationPolicy` exposes the same values for app policy code.
 
 ```swift
-let sourceLocale = LocalizationPolicy.sourceLocale
-let targetLocales = LocalizationPolicy.targetLocales
-let supportedIdentifiers = LocalizationPolicy.supportedLocaleIdentifiers
+let sourceLocale = SupportedLocale.sourceLocale
+let targetLocales = SupportedLocale.targetLocales
+let supportedIdentifiers = SupportedLocale.supportedLocaleIdentifiers
 let supportedCountries = LocalizationPolicy.supportedCountries
 let supportedCountryCodes = LocalizationPolicy.supportedCountryCodes
 ```

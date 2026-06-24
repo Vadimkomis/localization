@@ -33,6 +33,14 @@ struct LocalizationPolicyTests {
         ])
     }
 
+    @Test("localization policy delegates language list to SupportedLocale")
+    func policyDelegatesLanguageList() {
+        #expect(LocalizationPolicy.sourceLocale == SupportedLocale.sourceLocale)
+        #expect(LocalizationPolicy.targetLocales == SupportedLocale.targetLocales)
+        #expect(LocalizationPolicy.supportedLocales == SupportedLocale.supportedLocales)
+        #expect(LocalizationPolicy.supportedLocaleIdentifiers == SupportedLocale.supportedLocaleIdentifiers)
+    }
+
     @Test("supported countries match European launch set")
     func supportedCountries() {
         #expect(LocalizationPolicy.supportedCountries == [
