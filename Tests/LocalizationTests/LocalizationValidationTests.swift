@@ -20,52 +20,39 @@ struct LocalizationValidationTests {
         )
 
         #expect(!result.isValid)
-        #expect(result.missingLocales == [.ptBR, .ja, .de, .he])
+        #expect(result.missingLocales == [
+            .ptBR,
+            .ja,
+            .de,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("missingLocales returns missing locales directly")
     func missingLocalesShortcut() {
         let missing = LocalizationValidation.missingLocales(
-            in: ["en-US", "es", "pt-BR", "ja", "de", "fr"]
+            in: [
+                "en-US",
+                "es",
+                "pt-BR",
+                "ja",
+                "de",
+                "fr",
+                "he",
+                "da",
+                "fi",
+                "it",
+                "nl",
+                "nb"
+            ]
         )
 
-        #expect(missing == [.he])
-    }
-
-    @Test("country coverage is valid when all required codes are available")
-    func completeCountryCoverage() {
-        let result = LocalizationValidation.countryCoverage(
-            availableCodes: LocalizationPolicy.supportedCountryCodes
-        )
-
-        #expect(result.isValid)
-        #expect(result.missingCountries.isEmpty)
-    }
-
-    @Test("country coverage reports missing required countries")
-    func missingCountryCoverage() {
-        let result = LocalizationValidation.countryCoverage(
-            availableCodes: ["AT", "BE", "FR", "DE", "CH"]
-        )
-
-        #expect(!result.isValid)
-        #expect(result.missingCountries == [
-            .denmark,
-            .finland,
-            .italy,
-            .netherlands,
-            .norway,
-            .spain,
-            .sweden
-        ])
-    }
-
-    @Test("missingCountries returns missing countries directly")
-    func missingCountriesShortcut() {
-        let missing = LocalizationValidation.missingCountries(
-            in: ["AT", "BE", "DK", "FI", "FR", "DE", "IT", "NL", "NO", "ES", "SE"]
-        )
-
-        #expect(missing == [.switzerland])
+        #expect(missing == [.sv])
     }
 }

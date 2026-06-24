@@ -10,14 +10,41 @@ struct LocalizationPolicyTests {
         #expect(LocalizationPolicy.sourceLocale.identifier == "en-US")
     }
 
-    @Test("target locales match V1 language set")
+    @Test("target locales match expanded country language set")
     func targetLocales() {
-        #expect(LocalizationPolicy.targetLocales == [.es, .ptBR, .ja, .de, .fr, .he])
+        #expect(LocalizationPolicy.targetLocales == [
+            .es,
+            .ptBR,
+            .ja,
+            .de,
+            .fr,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("supported locales include source first followed by targets")
     func supportedLocales() {
-        #expect(LocalizationPolicy.supportedLocales == [.enUS, .es, .ptBR, .ja, .de, .fr, .he])
+        #expect(LocalizationPolicy.supportedLocales == [
+            .enUS,
+            .es,
+            .ptBR,
+            .ja,
+            .de,
+            .fr,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("locale identifiers are stable")
@@ -29,8 +56,21 @@ struct LocalizationPolicyTests {
             "ja",
             "de",
             "fr",
-            "he"
+            "he",
+            "da",
+            "fi",
+            "it",
+            "nl",
+            "nb",
+            "sv"
         ])
+    }
+
+    @Test("supported locale identifiers are unique")
+    func supportedLocaleIdentifiersAreUnique() {
+        let identifiers = LocalizationPolicy.supportedLocaleIdentifiers
+
+        #expect(Set(identifiers).count == identifiers.count)
     }
 
     @Test("localization policy delegates language list to SupportedLocale")
@@ -39,60 +79,6 @@ struct LocalizationPolicyTests {
         #expect(LocalizationPolicy.targetLocales == SupportedLocale.targetLocales)
         #expect(LocalizationPolicy.supportedLocales == SupportedLocale.supportedLocales)
         #expect(LocalizationPolicy.supportedLocaleIdentifiers == SupportedLocale.supportedLocaleIdentifiers)
-    }
-
-    @Test("supported countries match European launch set")
-    func supportedCountries() {
-        #expect(LocalizationPolicy.supportedCountries == [
-            .austria,
-            .belgium,
-            .denmark,
-            .finland,
-            .france,
-            .germany,
-            .italy,
-            .netherlands,
-            .norway,
-            .spain,
-            .sweden,
-            .switzerland
-        ])
-    }
-
-    @Test("supported country codes are stable")
-    func supportedCountryCodes() {
-        #expect(LocalizationPolicy.supportedCountryCodes == [
-            "AT",
-            "BE",
-            "DK",
-            "FI",
-            "FR",
-            "DE",
-            "IT",
-            "NL",
-            "NO",
-            "ES",
-            "SE",
-            "CH"
-        ])
-    }
-
-    @Test("supported country names are stable")
-    func supportedCountryNames() {
-        #expect(LocalizationPolicy.supportedCountries.map(\.name) == [
-            "Austria",
-            "Belgium",
-            "Denmark",
-            "Finland",
-            "France",
-            "Germany",
-            "Italy",
-            "Netherlands",
-            "Norway",
-            "Spain",
-            "Sweden",
-            "Switzerland"
-        ])
     }
 
     @Test("all supported locales expose stable identifiers")
@@ -104,7 +90,13 @@ struct LocalizationPolicyTests {
             "ja",
             "de",
             "fr",
-            "he"
+            "he",
+            "da",
+            "fi",
+            "it",
+            "nl",
+            "nb",
+            "sv"
         ])
     }
 
@@ -114,24 +106,11 @@ struct LocalizationPolicyTests {
         #expect(SupportedLocale.enUS.locale.identifier == "en-US")
     }
 
-    @Test("all supported countries expose stable codes")
-    func allSupportedCountryCodes() {
-        #expect(SupportedCountry.allCases.map(\.code) == LocalizationPolicy.supportedCountryCodes)
-    }
-
     @Test("supported locale codable round trip")
     func codableRoundTrip() throws {
         let encoded = try JSONEncoder().encode(SupportedLocale.he)
         let decoded = try JSONDecoder().decode(SupportedLocale.self, from: encoded)
 
         #expect(decoded == .he)
-    }
-
-    @Test("supported country codable round trip")
-    func countryCodableRoundTrip() throws {
-        let encoded = try JSONEncoder().encode(SupportedCountry.switzerland)
-        let decoded = try JSONDecoder().decode(SupportedCountry.self, from: encoded)
-
-        #expect(decoded == .switzerland)
     }
 }

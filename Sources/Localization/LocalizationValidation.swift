@@ -8,16 +8,6 @@ public struct LocaleCoverageResult: Equatable, Sendable {
     }
 }
 
-public struct CountryCoverageResult: Equatable, Sendable {
-    public let requiredCountries: [SupportedCountry]
-    public let availableCodes: Set<String>
-    public let missingCountries: [SupportedCountry]
-
-    public var isValid: Bool {
-        missingCountries.isEmpty
-    }
-}
-
 public enum LocalizationValidation {
     public static func coverage(
         availableIdentifiers: some Sequence<String>,
@@ -43,27 +33,4 @@ public enum LocalizationValidation {
         ).missingLocales
     }
 
-    public static func countryCoverage(
-        availableCodes: some Sequence<String>,
-        requiredCountries: [SupportedCountry] = LocalizationPolicy.supportedCountries
-    ) -> CountryCoverageResult {
-        let available = Set(availableCodes)
-        let missing = requiredCountries.filter { !available.contains($0.code) }
-
-        return CountryCoverageResult(
-            requiredCountries: requiredCountries,
-            availableCodes: available,
-            missingCountries: missing
-        )
-    }
-
-    public static func missingCountries(
-        in availableCodes: some Sequence<String>,
-        requiredCountries: [SupportedCountry] = LocalizationPolicy.supportedCountries
-    ) -> [SupportedCountry] {
-        countryCoverage(
-            availableCodes: availableCodes,
-            requiredCountries: requiredCountries
-        ).missingCountries
-    }
 }

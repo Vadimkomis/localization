@@ -8,6 +8,12 @@ public enum SupportedLocale: String, CaseIterable, Codable, Equatable, Hashable,
     case de = "de"
     case fr = "fr"
     case he = "he"
+    case da = "da"
+    case fi = "fi"
+    case it = "it"
+    case nl = "nl"
+    case nb = "nb"
+    case sv = "sv"
 
     public static let sourceLocale: SupportedLocale = .enUS
 
@@ -17,7 +23,13 @@ public enum SupportedLocale: String, CaseIterable, Codable, Equatable, Hashable,
         .ja,
         .de,
         .fr,
-        .he
+        .he,
+        .da,
+        .fi,
+        .it,
+        .nl,
+        .nb,
+        .sv
     ]
 
     public static var supportedLocales: [SupportedLocale] {
