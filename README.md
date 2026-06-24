@@ -20,8 +20,6 @@ This package does not own app copy. Each app should still keep its translated st
 
 - Source locale: `en-US`
 - Target locales: `es`, `pt-BR`, `ja`, `de`, `fr`, `he`, `da`, `fi`, `it`, `nl`, `nb`, `sv`
-- The added European country language set covers Austria, Belgium, Denmark, Finland, France, Germany, Italy, the Netherlands, Norway, Spain, Sweden, and Switzerland without duplicating languages already present.
-- Newly added locale identifiers from that country set are `da`, `fi`, `it`, `nl`, `nb`, and `sv`; existing `de`, `fr`, and `es` were reused.
 
 ## Installation
 
