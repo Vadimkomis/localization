@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml/badge.svg)](https://github.com/Vadimkomis/localization/actions/workflows/ci.yml)
 [![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](Package.swift)
-[![Locales](https://img.shields.io/badge/locales-V1-blue.svg)](#supported-locales)
+[![Locales](https://img.shields.io/badge/locales-13-blue.svg)](#supported-locales)
 [![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](Package.swift)
 [![iOS](https://img.shields.io/badge/iOS-26%2B-lightgrey.svg)](Package.swift)
 
@@ -19,7 +19,7 @@ This package does not own app copy. Each app should still keep its translated st
 ## Supported locales
 
 - Source locale: `en-US`
-- Target locales: `es`, `pt-BR`, `ja`, `de`, `fr`, `he`
+- Target locales: `es`, `pt-BR`, `ja`, `de`, `fr`, `he`, `da`, `fi`, `it`, `nl`, `nb`, `sv`
 
 ## Installation
 
@@ -45,12 +45,12 @@ Import the package wherever app code or tests need the supported locale policy:
 import Localization
 ```
 
-Read the source locale, target locales, or all supported locale identifiers:
+Read the source locale, target locales, or stable identifiers. `SupportedLocale` is the centralized language list; `LocalizationPolicy` exposes the same values for app policy code.
 
 ```swift
-let sourceLocale = LocalizationPolicy.sourceLocale
-let targetLocales = LocalizationPolicy.targetLocales
-let supportedIdentifiers = LocalizationPolicy.supportedLocaleIdentifiers
+let sourceLocale = SupportedLocale.sourceLocale
+let targetLocales = SupportedLocale.targetLocales
+let supportedIdentifiers = SupportedLocale.supportedLocaleIdentifiers
 ```
 
 Supported identifiers are stable and ordered with the source locale first:
@@ -63,7 +63,13 @@ Supported identifiers are stable and ordered with the source locale first:
     "ja",
     "de",
     "fr",
-    "he"
+    "he",
+    "da",
+    "fi",
+    "it",
+    "nl",
+    "nb",
+    "sv"
 ]
 ```
 
@@ -84,7 +90,13 @@ func appIncludesAllRequiredLocales() {
         "ja",
         "de",
         "fr",
-        "he"
+        "he",
+        "da",
+        "fi",
+        "it",
+        "nl",
+        "nb",
+        "sv"
     ]
 
     let result = LocalizationValidation.coverage(

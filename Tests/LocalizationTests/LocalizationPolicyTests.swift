@@ -10,14 +10,41 @@ struct LocalizationPolicyTests {
         #expect(LocalizationPolicy.sourceLocale.identifier == "en-US")
     }
 
-    @Test("target locales match V1 language set")
+    @Test("target locales match expanded country language set")
     func targetLocales() {
-        #expect(LocalizationPolicy.targetLocales == [.es, .ptBR, .ja, .de, .fr, .he])
+        #expect(LocalizationPolicy.targetLocales == [
+            .es,
+            .ptBR,
+            .ja,
+            .de,
+            .fr,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("supported locales include source first followed by targets")
     func supportedLocales() {
-        #expect(LocalizationPolicy.supportedLocales == [.enUS, .es, .ptBR, .ja, .de, .fr, .he])
+        #expect(LocalizationPolicy.supportedLocales == [
+            .enUS,
+            .es,
+            .ptBR,
+            .ja,
+            .de,
+            .fr,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("locale identifiers are stable")
@@ -29,8 +56,29 @@ struct LocalizationPolicyTests {
             "ja",
             "de",
             "fr",
-            "he"
+            "he",
+            "da",
+            "fi",
+            "it",
+            "nl",
+            "nb",
+            "sv"
         ])
+    }
+
+    @Test("supported locale identifiers are unique")
+    func supportedLocaleIdentifiersAreUnique() {
+        let identifiers = LocalizationPolicy.supportedLocaleIdentifiers
+
+        #expect(Set(identifiers).count == identifiers.count)
+    }
+
+    @Test("localization policy delegates language list to SupportedLocale")
+    func policyDelegatesLanguageList() {
+        #expect(LocalizationPolicy.sourceLocale == SupportedLocale.sourceLocale)
+        #expect(LocalizationPolicy.targetLocales == SupportedLocale.targetLocales)
+        #expect(LocalizationPolicy.supportedLocales == SupportedLocale.supportedLocales)
+        #expect(LocalizationPolicy.supportedLocaleIdentifiers == SupportedLocale.supportedLocaleIdentifiers)
     }
 
     @Test("all supported locales expose stable identifiers")
@@ -42,7 +90,13 @@ struct LocalizationPolicyTests {
             "ja",
             "de",
             "fr",
-            "he"
+            "he",
+            "da",
+            "fi",
+            "it",
+            "nl",
+            "nb",
+            "sv"
         ])
     }
 

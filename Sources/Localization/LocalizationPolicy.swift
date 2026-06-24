@@ -1,20 +1,14 @@
 public enum LocalizationPolicy {
-    public static let sourceLocale: SupportedLocale = .enUS
+    public static let sourceLocale: SupportedLocale = SupportedLocale.sourceLocale
 
-    public static let targetLocales: [SupportedLocale] = [
-        .es,
-        .ptBR,
-        .ja,
-        .de,
-        .fr,
-        .he
-    ]
+    public static let targetLocales: [SupportedLocale] = SupportedLocale.targetLocales
 
     public static var supportedLocales: [SupportedLocale] {
-        [sourceLocale] + targetLocales
+        SupportedLocale.supportedLocales
     }
 
     public static var supportedLocaleIdentifiers: [String] {
-        supportedLocales.map(\.identifier)
+        SupportedLocale.supportedLocaleIdentifiers
     }
+
 }

@@ -20,15 +20,39 @@ struct LocalizationValidationTests {
         )
 
         #expect(!result.isValid)
-        #expect(result.missingLocales == [.ptBR, .ja, .de, .he])
+        #expect(result.missingLocales == [
+            .ptBR,
+            .ja,
+            .de,
+            .he,
+            .da,
+            .fi,
+            .it,
+            .nl,
+            .nb,
+            .sv
+        ])
     }
 
     @Test("missingLocales returns missing locales directly")
     func missingLocalesShortcut() {
         let missing = LocalizationValidation.missingLocales(
-            in: ["en-US", "es", "pt-BR", "ja", "de", "fr"]
+            in: [
+                "en-US",
+                "es",
+                "pt-BR",
+                "ja",
+                "de",
+                "fr",
+                "he",
+                "da",
+                "fi",
+                "it",
+                "nl",
+                "nb"
+            ]
         )
 
-        #expect(missing == [.he])
+        #expect(missing == [.sv])
     }
 }
