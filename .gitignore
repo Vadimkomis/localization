@@ -35,6 +35,15 @@ playground.xcworkspace
 .build/
 .swiftpm/
 
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
